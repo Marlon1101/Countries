@@ -1,10 +1,21 @@
-const { Router } = require('express');
-
+const { Router } = require("express");
+const { Activity, Country } = require("../db");
 const router = Router();
 
+router.post("/activity", async (req, res, next) => {
+  const { Nombre, Dificultad, Duracion, Temporada, idPais } = req.body;
 
-router.post("/activity", (req, res, next) => {
-    res.send("soy un post")
-})
+  const activityCreated = await Activity.findOrCreate({
+    where: {
+      Nombre,
+      Dificultad,
+      Duracion,
+      Temporada,
+    },
+  });
+  const activity = await Activity.findByPk(activityCreated[0].ID);
+  await activity.addCountry(idPais);
+  res.send("Done");
+});
 
 module.exports = router;
