@@ -4,7 +4,7 @@ const { Country, Activity } = require("../db");
 const router = Router();
 const { Op } = require("sequelize");
 
-router.get("/countries", async(req, res, next) => {
+router.get("/countries", async (req, res, next) => {
   if (req.query.name) {
     const { name } = req.query;
     let url = `https://restcountries.com/v3.1/name/${name}`;
@@ -48,7 +48,16 @@ router.get("/countries", async(req, res, next) => {
         });
       }
 
-      res.send(await Country.findAll());
+      res.send(
+        await Country.findAll({
+          include: {
+            model: Activity,
+            through: {
+              attributes: [],
+            },
+          },
+        })
+      );
     });
   }
 });
@@ -57,16 +66,16 @@ router.get("/countries/:idPais", async (req, res, next) => {
   const { idPais } = req.params;
 
   const country = await Country.findAll({
-    where: { Nombre: { [Op.iLike]: `%${idPais}%` } },
+    where: { ID: { [Op.iLike]: `%${idPais}%` } },
     include: {
       model: Activity,
       through: {
-        attributes: []
-      }
-    }
+        attributes: [],
+      },
+    },
   });
-  if(!country.length)res.send("The country wasn't found")
-  else res.send(country)
+  if (!country.length) res.send("The country wasn't found");
+  else res.send(country);
 });
 
 module.exports = router;

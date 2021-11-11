@@ -1,0 +1,43 @@
+/* .containerListCheckBox{
+display: flex;
+justify-content: center;
+flex-direction: column;
+align-items: center;
+} */
+
+/* .listCheckBox{
+    display: flex;
+    flex-direction: column;
+ overflow-y: scroll; 
+    width:400px; 
+    height:300px;
+    align-items: flex-start;
+    border: 2px solid black;
+}
+ */
+.btn{
+    border: none;
+    color: white;
+    background-color: red;
+    width: 70px;
+    height: 40px;
+}
+
+.datalist{
+    width: 100px;
+    height: 100px;
+    background-color: black;
+}
+
+.countriesSelectedContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.listCountries{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 20px;
+}

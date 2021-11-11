@@ -13,7 +13,7 @@ router.post("/activity", async (req, res, next) => {
       Temporada,
     },
   });
-  const activity = await Activity.findByPk(activityCreated[0].ID);
+  const activity = await Activity.findByPk(activityCreated[0].id);
   await activity.addCountry(idPais);
   res.send("Done");
 });

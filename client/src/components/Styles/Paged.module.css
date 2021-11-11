@@ -1,0 +1,10 @@
+.paged{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.btn{
+    margin: 0.2rem;
+    list-style: none;
+}
