@@ -1,0 +1,46 @@
+#background {
+    background: url("https://cdn.pixabay.com/photo/2018/06/18/23/03/europe-3483539_960_720.jpg");
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  
+  #background:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  
+  #container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 663px;
+    width: 100%;
+    position: relative;
+  }
+  
+  #loader {
+    border: 16px solid white; /* Light grey */
+    border-top: 16px solid var(--darkBlue); /* Blue */
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: spin 2s linear infinite;
+    position: relative;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }

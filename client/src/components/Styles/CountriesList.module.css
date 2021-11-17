@@ -4,3 +4,37 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+
+  .link{
+    text-decoration: none;
+  }
+
+  #container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 663px;
+    width: 100%;
+    position: relative;
+  }
+
+  #loader {
+    border: 16px solid white;
+    border-top: 16px solid var(--darkBlue);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 2s linear infinite;
+    position: relative;
+    margin-top: 130px;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }

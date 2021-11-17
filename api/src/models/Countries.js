@@ -31,6 +31,9 @@ module.exports = (sequelize) => {
     Poblacion:{
       type: DataTypes.INTEGER
     },
+    Map:{
+      type: DataTypes.STRING
+    }
   },
   {
     timestamps: false

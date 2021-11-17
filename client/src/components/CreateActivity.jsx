@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { createActivity, searchById } from "../redux/actions";
 import styles from "./Styles/CreateActivity.module.css";
 import { sortCountries, getCountries } from "../redux/actions/index";
-
+import Loader from "./Loader";
 export default function CreateActivity() {
   const params = useParams();
   const listCountries = useSelector((state) => state.countries);
@@ -22,7 +22,7 @@ export default function CreateActivity() {
 
   useEffect(() => {
     dispatch(sortCountries("Ascendent", "Nombre"));
-    setCountriesForDelete([])
+    setCountriesForDelete([]);
   }, [dispatch, listCountries]);
 
   let idForCountriesSelected = "";
@@ -142,111 +142,140 @@ export default function CreateActivity() {
   }
 
   if (!listCountries.length) {
-    return <p>Loading...</p>;
+    return <Loader />;
   } else {
     return (
       <div>
-        <Link to="/home/">Home</Link>
-        <hr />
-        <Link to={`/home/${params.idPais}`}>Detail Country</Link>
-        <hr />
-        <form
-          name="f1"
-          onSubmit={(e) => handleSubmit(e)}
-          onChange={(e) => handleChangeCheckbox(e)}
-        >
-          <input
-            type="texto"
-            placeholder="Name"
-            name="Nombre"
-            onChange={(e) => handleChange(e)}
-          ></input>
-          <hr />
-          <select
-            id="difficulty"
-            name="Dificultad"
-            onChange={(e) => handleChange(e)}
+        <div className={styles.bar}>
+          <div className={styles.linkHome}>
+            <Link to="/home/">Home</Link>
+          </div>
+          <div className={styles.linkDetail}>
+            <Link to={`/home/${params.idPais}`}>Detail Country</Link>
+          </div>
+        </div>
+        <div className={styles.containerForm}>
+          <form
+            className={styles.form}
+            name="f1"
+            onSubmit={(e) => handleSubmit(e)}
+            onChange={(e) => handleChangeCheckbox(e)}
           >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-          <hr />
-          <input
-            type="texto"
-            placeholder="Duration"
-            name="Duracion"
-            onChange={(e) => handleChange(e)}
-          ></input>
-          <hr />
-          <select onChange={(e) => handleChange(e)} name="Temporada">
-            <option value="Verano">Summer</option>
-            <option value="Otoño">Autumn</option>
-            <option value="Invierno">Winter</option>
-            <option value="Primavera">Spring</option>
-          </select>
-          <hr />
-          <div className={styles.containerListCheckBox}>
-            <div className={styles.listCheckBox}>
-              <input
-                list="list"
-                placeholder="Country"
-                ref={inputCountries}
-                onChange={(e) => {
-                  handleSelect(e);
-                }}
-              />
-              <datalist id="list" className={styles.datalist}>
-                {listCountries.map((e) => {
-                  return <option key={e.ID}>{e.Nombre}</option>;
-                })}
-              </datalist>
+            <div className={styles.containerFirstData}>
+              <div className={styles.containerName}>
+                <p className={styles.name}>NAME</p>
+                <input
+                  type="texto"
+                  autoComplete="off"
+                  placeholder="Name"
+                  name="Nombre"
+                  onChange={(e) => handleChange(e)}
+                />
+              </div>
+              <div className={styles.containerDifficulty}>
+                <p className={styles.difficulty}>DIFFICULTY</p>
+                <select
+                  autoComplete="off"
+                  id="difficulty"
+                  name="Dificultad"
+                  onChange={(e) => handleChange(e)}
+                >
+                  <option value="1">Very Easy</option>
+                  <option value="2">Easy</option>
+                  <option value="3">Medium</option>
+                  <option value="4">Hard</option>
+                  <option value="5">Very Hard</option>
+                </select>
+              </div>
+              <div className={styles.containerDuration}>
+                <p className={styles.duration}>DURATION</p>
+                <input
+                  autoComplete="off"
+                  type="texto"
+                  placeholder="Duration"
+                  name="Duracion"
+                  onChange={(e) => handleChange(e)}
+                ></input>
+              </div>
+              <div className={styles.containerSeason}>
+                <p className={styles.season}>SEASON</p>
+                <select onChange={(e) => handleChange(e)} name="Temporada">
+                  <option value="Verano">Summer</option>
+                  <option value="Otoño">Autumn</option>
+                  <option value="Invierno">Winter</option>
+                  <option value="Primavera">Spring</option>
+                </select>
+              </div>
             </div>
-            <button
-              className={styles.btn}
-              onClick={(e) => handleAddCountries(e, inputCountries)}
-            >
-              Add Country
-            </button>
-
-            <div className={styles.countriesSelectedContainer}>
-              <h3>Countries Added</h3>
-              <div className={styles.listCountries}>
-                {data.idPais.map((ID) => {
-                  let countryName = listCountries.find((e) => e.ID === ID);
-                  return (
-                    <div key={countryName.ID}>
-                      <label>
-                        <input
-                          value={countryName.ID}
-                          type="checkbox"
-                          onClick={(e) => handleSelectCheckBox(e)}
-                        />
-                        {countryName.Nombre}
-                      </label>
-                      <br />
-                    </div>
-                  );
-                })}
+            <div className={styles.containerAddCountries}>
+              <div>
+                <p className={styles.addCountries}>ADD COUNTRIES</p>
+                <input
+                  list="list"
+                  placeholder="Country"
+                  ref={inputCountries}
+                  onChange={(e) => {
+                    handleSelect(e);
+                  }}
+                />
+                <datalist id="list" className={styles.dataList}>
+                  {listCountries.map((e) => {
+                    return <option key={e.ID}>{e.Nombre}</option>;
+                  })}
+                </datalist>
               </div>
               <button
-                name="btn_Delete"
-                type="button"
-                disabled={flagBtnDelete}
-                onClick={(e) => handleDeleteCountries(e)}
+                className={styles.btn}
+                onClick={(e) => handleAddCountries(e, inputCountries)}
               >
-                Delete selected
+                Add
+              </button>
+
+              <div className={styles.countriesSelectedContainer}>
+                <p className={styles.countriesAdded}>Countries Added</p>
+                <div className={styles.listCountries}>
+                  {data.idPais.map((ID) => {
+                    let countryName = listCountries.find((e) => e.ID === ID);
+                    return (
+                      <div key={countryName.ID}>
+                        <label>
+                          <input
+                            value={countryName.ID}
+                            type="checkbox"
+                            onClick={(e) => handleSelectCheckBox(e)}
+                          />
+                          {countryName.Nombre}
+                        </label>
+                        <br />
+                      </div>
+                    );
+                  })}
+                </div>
+                <button
+                  id={styles.delete}
+                  name="btn_Delete"
+                  type="button"
+                  disabled={flagBtnDelete}
+                  onClick={(e) => handleDeleteCountries(e)}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+            <div className={styles.containerBtns}>
+              <button className={styles.btn} type="submit">
+                Create
+              </button>
+              <button
+                className={styles.btn}
+                type="reset"
+                onClick={(e) => handleReset()}
+              >
+                Reset
               </button>
             </div>
-          </div>
-          <hr />
-          <button type="submit">Create</button>
-          <button type="reset" onClick={(e) => handleReset()}>
-            Reset
-          </button>
-        </form>
+          </form>
+        </div>
       </div>
     );
   }

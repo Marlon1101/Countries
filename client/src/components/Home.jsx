@@ -11,6 +11,7 @@ import styles from "./Styles/Home.module.css";
 import Paged from "./Paged";
 import SearchBar from "./SearchBar";
 import CountriesList from "./CountriesList";
+import Loader from "./Loader";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -70,7 +71,7 @@ export default function Home() {
     setOrder(`Ordenado ${document.f1.elements[0].value} Por ${e.target.value}`);
   }
   if (!countries.length) {
-    return <p>Loading...</p>;
+    return <Loader />;
   } else {
     return (
       <div>
@@ -82,66 +83,85 @@ export default function Home() {
         ) : (
           <></>
         )}
-        <h1>COUNTRIES</h1>
 
         <div>
-          <form name="f1">
-            <h4>Order</h4>
-            <select onChange={(e) => handleSort(e)}>
-              <option value="Ascendent"> Ascendente </option>
-              <option value="Descendent"> Descendente </option>
-            </select>
-
-            <h4>Order by</h4>
-            <label>
-              <input
-                type="radio"
-                name="order"
-                value="Poblacion"
-                onClick={(e) => handleSelectTypeOrder(e)}
-              />
-              Poblation
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="order"
-                value="Nombre"
-                onClick={(e) => handleSelectTypeOrder(e)}
-                defaultChecked={true}
-              />
-              Name
-            </label>
-
-            <h4>Filter by continent</h4>
-            <select onChange={(e) => handleFilterContinent(e)}>
-              <option value="All">All</option>
-              <option value="Africa">Africa</option>
-              <option value="Antarctica">Antarctica</option>
-              <option value="Asia">Asia</option>
-              <option value="Europe">Europe</option>
-              <option value="North America">North America</option>
-              <option value="Oceania">Oceania</option>
-              <option value="South America">South America</option>
-            </select>
-            <h4>Filter by Season of activities</h4>
-
-            <select onChange={(e) => handleFilterByActivity(e)}>
-              <option value="All">All</option>
-              <option value="Verano">Summer</option>
-              <option value="Otoño">Autumn</option>
-              <option value="Invierno">Winter</option>
-              <option value="Primavera">Spring</option>
-            </select>
+          <form className={styles.form} name="f1">
+            <div className={styles.filtersContainer}>
+              <div className={styles.asc}>
+                <div className={styles.typeAsc}>
+                  Sort
+                  <select
+                    className={styles.selectAsc}
+                    onChange={(e) => handleSort(e)}
+                  >
+                    <option value="Ascendent"> Ascending </option>
+                    <option value="Descendent"> Descending </option>
+                  </select>
+                  By
+                </div>
+                <div className={styles.options}>
+                  <label className={styles.btnRadio}>
+                    <input
+                      type="radio"
+                      name="order"
+                      value="Poblacion"
+                      onClick={(e) => handleSelectTypeOrder(e)}
+                    />
+                    Poblation
+                  </label>
+                  <label className={styles.btnRadio}>
+                    <input
+                      type="radio"
+                      name="order"
+                      value="Nombre"
+                      onClick={(e) => handleSelectTypeOrder(e)}
+                      defaultChecked={true}
+                    />
+                    Name
+                  </label>
+                </div>
+              </div>
+              <div className={styles.containerContinent}>
+                By Continent
+                <select
+                  className={styles.continent}
+                  onChange={(e) => handleFilterContinent(e)}
+                >
+                  <option value="All">All</option>
+                  <option value="Africa">Africa</option>
+                  <option value="Antarctica">Antarctica</option>
+                  <option value="Asia">Asia</option>
+                  <option value="Europe">Europe</option>
+                  <option value="North America">North America</option>
+                  <option value="Oceania">Oceania</option>
+                  <option value="South America">South America</option>
+                </select>
+              </div>
+              <div className={styles.containerSeason}>
+                By Activities In
+                <select
+                  className={styles.season}
+                  onChange={(e) => handleFilterByActivity(e)}
+                >
+                  <option value="All">All</option>
+                  <option value="Verano">Summer</option>
+                  <option value="Otoño">Autumn</option>
+                  <option value="Invierno">Winter</option>
+                  <option value="Primavera">Spring</option>
+                </select>
+              </div>
+            </div>
           </form>
-          <Paged
-            countriesPerPage={countriesPerPage}
-            allCountries={countries.length}
-            paged={paged}
-          />
+          <div className={styles.pagedAndList}>
+            <Paged
+              countriesPerPage={countriesPerPage}
+              allCountries={countries.length}
+              paged={paged}
+            />
 
-          <div>
-            <CountriesList cCountries={cCountries} stateUpdate={update} />
+            <div>
+              <CountriesList cCountries={cCountries} stateUpdate={update} />
+            </div>
           </div>
         </div>
       </div>

@@ -137,11 +137,18 @@ const rootReducer = (state = initialState, action) => {
         countries: countriesAsc,
       };
 
-    case SEARCH_COUNTRY:
-      return {
-        ...state,
-        countries: action.payload,
-      };
+    case SEARCH_COUNTRY: 
+    if (action.dataLength === 1 || !action.payload.length) {
+        return {
+          ...state,
+          countries: state.allCountries,
+        };
+      } else {
+        return {
+          ...state,
+          countries: action.payload,
+        };
+      }
     case SEARCH_BY_ID:
       return {
         ...state,

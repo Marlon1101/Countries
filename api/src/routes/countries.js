@@ -7,8 +7,18 @@ const { Op } = require("sequelize");
 router.get("/countries", async (req, res, next) => {
   if (req.query.name) {
     const { name } = req.query;
-    let url = `https://restcountries.com/v3.1/name/${name}`;
 
+    res.send(
+      await Country.findAll({
+        where: {
+          Nombre: { [Op.iLike]: `${name}%` },
+        },
+      })
+    );
+
+    /* let url = `https://restcountries.com/v3.1/name/${name}`;
+
+    
     await axios.get(url).then((response) => {
       res.send({
         ID: response.data[0].cca3,
@@ -24,7 +34,7 @@ router.get("/countries", async (req, res, next) => {
         Area: response.data[0].area,
         Poblacion: response.data[0].population,
       });
-    });
+    }); */
   } else {
     let url = "https://restcountries.com/v3.1/all";
 
@@ -44,6 +54,7 @@ router.get("/countries", async (req, res, next) => {
               : "There isn't a Subregion",
             Area: response.data[i].area,
             Poblacion: response.data[i].population,
+            Map: response.data[i].maps.googleMaps,
           },
         });
       }

@@ -1,43 +1,189 @@
-/* .containerListCheckBox{
-display: flex;
-justify-content: center;
-flex-direction: column;
-align-items: center;
-} */
-
-/* .listCheckBox{
-    display: flex;
-    flex-direction: column;
- overflow-y: scroll; 
-    width:400px; 
-    height:300px;
-    align-items: flex-start;
-    border: 2px solid black;
-}
- */
-.btn{
-    border: none;
-    color: white;
-    background-color: red;
-    width: 70px;
-    height: 40px;
+.bar {
+  user-select: none;
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
+  background-color: var(--darkBlue);
+  width: 100%;
+  height: 70px;
+  position: fixed;
+  top: 0;
+  box-shadow: 0px 1px 30px black;
+  z-index: 1000;
 }
 
-.datalist{
-    width: 100px;
-    height: 100px;
-    background-color: black;
+.linkHome a {
+  text-decoration: none;
+  color: var(--lightBlue);
+  font-family: Bebas Neue;
+  font-size: 40px;
 }
 
-.countriesSelectedContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.linkDetail a {
+  text-decoration: none;
+  color: var(--lightBlue);
+  margin-left: 20px;
+  margin-right: 20px;
+  font-family: Bebas Neue;
+  font-size: 40px;
 }
 
-.listCountries{
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    margin-bottom: 20px;
+.containerForm {
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  user-select: none;
+  background: linear-gradient(60deg, var(--midBlue) 5%, var(--lightBlue) 100%);
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  margin-top: 110px;
+  margin-bottom: 50px;
+  max-height: 3000px;
+  width: 350px;
+  border-radius: 50px;
+  box-shadow: -5px 10px 20px 1px var(--midBlue);
+}
+
+.btn {
+  margin-top: 5px;
+  border: none;
+  border-radius: 7px;
+  color: white;
+  background: linear-gradient(
+    to right,
+    var(--midBlue) 5%,
+    var(--darkBlue) 100%
+  );
+  width: 55px;
+  height: 30px;
+  cursor: pointer;
+  font-family: Bebas Neue;
+  font-size: 20px;
+}
+
+.btn:hover {
+  background: linear-gradient(
+    to right,
+    var(--darkBlue) 5%,
+    var(--midBlue) 100%
+  );
+  position: relative;
+  transform: scale(1.1);
+}
+.btn:active {
+  position: relative;
+  transform: scale(1);
+}
+
+.dataList {
+  width: 100px;
+  height: 100px;
+  background-color: black;
+}
+
+.countriesSelectedContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.listCountries {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.name,
+.difficulty,
+.duration,
+.season,
+.addCountries {
+  user-select: none;
+  margin-bottom: 3px;
+  margin-right: 10px;
+  font-family: Bebas Neue;
+  font-size: 25px;
+  color: var(--darkBlue);
+}
+
+.containerName,
+.containerDifficulty,
+.containerDuration,
+.containerSeason {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.containerName,
+.containerDuration {
+  width: 180px;
+  height: 100px;
+}
+
+.containerDifficulty,
+.containerSeason {
+  margin-left: 30px;
+  width: 100px;
+  height: 100px;
+}
+
+.containerBtns {
+  margin-top: 10px;
+  width: 230px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.containerFirstData {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#delete {
+  margin-top: 5px;
+  border: none;
+  border-radius: 7px;
+  color: white;
+  background-color: red;
+  width: 55px;
+  height: 30px;
+  cursor: pointer;
+  font-family: Bebas Neue;
+  font-size: 20px;
+}
+
+#delete:hover {
+  position: relative;
+  transform: scale(1.1);
+}
+#delete:active {
+  position: relative;
+  transform: scale(1);
+}
+
+input {
+  font-family: montserrat;
+  font-size: 13px;
+}
+
+.countriesAdded {
+  color: var(--darkBlue);
+  font-family: montserrat;
+  font-size: 17px;
 }

@@ -13,8 +13,8 @@ export default function Paged({ countriesPerPage, allCountries, paged }) {
       <ul className={styles.paged}>
         {numberPage &&
           numberPage.map((n) => 
-          <li className={styles.btn} key={n}>
-          <button onClick={() => paged(n)}> {n} </button>
+          <li className={styles.list} key={n}>
+          <button className={styles.btn}onClick={() => paged(n)}> {n} </button>
           </li>
           )}
       </ul>

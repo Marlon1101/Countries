@@ -5,10 +5,14 @@ export default function LandingPage() {
   return (
     <div className={styles.background}>
       <div className={styles.content}>
-        <h1 id={styles.text}>COUNTRIES</h1>
+        
+        <h1 id={styles.title}>Countries</h1>
+        
+        <div id={styles.containerLink}>
         <Link to="/home" id={styles.link}>
           Home
         </Link>
+        </div>
       </div>
     </div>
   );

@@ -1,38 +1,87 @@
+:root {
+  /* Color Palet */
+  --darkBlue: #103a4c;
+  --lightBlue: #88cae5;
+  --brown: #4c3316;
+  --orange: #cc9b64;
+  --midBlue: #4b8299;
+}
 
 .background {
-  background: url("https://cdn.pixabay.com/photo/2021/10/28/20/20/hut-6750482_960_720.jpg");
+  background: url("https://cdn.pixabay.com/photo/2018/06/18/23/03/europe-3483539_960_720.jpg");
   width: 100%;
-  height: 663px;
   background-repeat: no-repeat;
   background-position: center;
-  background-attachment: fixed;
   background-size: cover;
 }
 
-.content{
+.background:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.content {
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 663px;
 }
 
-#text {
+#title {
   margin: 0;
+  font-family: Bebas Neue;
   cursor: default;
-  font-size: 6rem;
-  margin-bottom: 1rem;
-  color: bisque;
+  font-size: 10rem;
+  /* color: var(--lightBlue); */
+  position: relative;
+  background: linear-gradient(
+    to bottom,
+    var(--lightBlue) 0%,
+    var(--midBlue) 70%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 #link {
+  background: linear-gradient(
+    to bottom,
+    var(--midBlue) 0%,
+    var(--darkBlue) 100%
+  );
+  border-radius: 8px;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 13px 32px;
   text-decoration: none;
-  color: beige;
-  font-size: 3rem;
+  position: relative;
 }
 
-#link:hover{
-  color: aqua;
+#link:hover {
+  background: linear-gradient(
+    to bottom,
+    var(--darkBlue) 5%,
+    var(--midBlue) 100%
+  );
+  position: relative;
+  transform: scale(1.1);
 }
 
+#link:active {
+  position: relative;
+  transform: scale(1);
+}
