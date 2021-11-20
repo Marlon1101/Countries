@@ -238,7 +238,7 @@ export default function CreateActivity() {
                     let countryName = listCountries.find((e) => e.ID === ID);
                     return (
                       <div key={countryName.ID}>
-                        <label>
+                        <label className={styles.checkbox}>
                           <input
                             value={countryName.ID}
                             type="checkbox"

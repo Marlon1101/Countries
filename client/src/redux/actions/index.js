@@ -10,7 +10,7 @@ export const CREATE_ACTIVITY = "CREATE_ACTIVITY";
 
 export function getCountries(field) {
   return async (dispatch) => {
-    const json = await axios.get("http://localhost:3001/api/countries");
+    const json = await axios.get("/api/countries");
 
     return dispatch({
       type: GET_COUNTRIES,
@@ -52,7 +52,7 @@ export function searchCountry(payload) {
   return async (dispatch) => {
     try {
       const json = await axios.get(
-        `http://localhost:3001/api/countries?name=${payload}`
+        `/api/countries?name=${payload}`
       );
       return dispatch({
         type: SEARCH_COUNTRY,
@@ -68,7 +68,7 @@ export function searchCountry(payload) {
 export function searchById(payload) {
   return async (dispatch) => {
     const json = await axios.get(
-      `http://localhost:3001/api/countries/${payload}`
+      `/api/countries/${payload}`
     );
     return dispatch({
       type: SEARCH_BY_ID,
@@ -79,7 +79,7 @@ export function searchById(payload) {
 
 export function createActivity(payload) {
   return async (dispatch) => {
-    const res = await axios.post("http://localhost:3001/api/activity", payload);
+    const res = await axios.post("/api/activity", payload);
     return dispatch({
       type: CREATE_ACTIVITY,
       payload: res.data,
