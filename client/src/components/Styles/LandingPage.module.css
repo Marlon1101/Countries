@@ -7,6 +7,11 @@
   --midBlue: #4b8299;
 }
 
+.container{
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
 .background {
   background: url("https://cdn.pixabay.com/photo/2018/06/18/23/03/europe-3483539_960_720.jpg");
   width: 100%;
@@ -15,7 +20,7 @@
   background-size: cover;
 }
 
-.background:before {
+.background::before {
   content: "";
   position: absolute;
   top: 0;

@@ -3,6 +3,7 @@ import styles from "./Styles/LandingPage.module.css";
 
 export default function LandingPage() {
   return (
+    <div className={styles.container}>
     <div className={styles.background}>
       <div className={styles.content}>
         
@@ -14,6 +15,7 @@ export default function LandingPage() {
         </Link>
         </div>
       </div>
+    </div>
     </div>
   );
 }
